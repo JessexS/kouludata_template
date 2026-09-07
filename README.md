@@ -41,23 +41,46 @@ nothing to install and nothing to deploy.
 
 ### 1. Make your own copy
 
-Two ways, and the difference matters.
+> **Do not use GitHub's "Fork" button for this.** A fork of a public repository
+> is public, and GitHub does not let a personal account make its own fork
+> private. Your timetable, notes and coursework need a private repository, so
+> use one of the routes below instead — all three end with you owning a private
+> repo with these files in it.
 
-**Use this template — do this one.** Click **Use this template → Create a new
+**Use this template (recommended).** Click **Use this template → Create a new
 repository** at the top of this page. Name it whatever you like (`kouludata` is
-a fine choice) and **set it to Private**. You get the same files with a clean
-history of your own, and it is the only route that produces a private repo.
+a fine choice) and **set it to Private**. This is the fastest route and needs
+nothing installed.
 
-**Fork.** Forking works and is welcome — for reading the setup, suggesting a fix
-to these instructions, or keeping a copy you intend to share. But **a fork of a
-public repository is public, and GitHub will not let you make it private.** Your
-timetable, notes and coursework should not live in a public repo, so do not put
-real data in a fork. If you have already forked and want to switch: use the
-template to make a private repo, then delete the fork.
+**Clone with git, then push to your own repo.** For anyone who wants the files
+locally first, or is hosting the private repo somewhere other than GitHub:
 
-Either way you now have `data.json` (an empty document), a `.gitignore` that
-keeps calendar exports and tokens out, and an example course folder you can
-delete.
+```bash
+git clone https://github.com/JessexS/kouludata_template.git kouludata
+cd kouludata
+rm -rf .git              # this repo's history is not yours to carry
+git init -b main
+git add -A
+git commit -m "Initial commit"
+```
+
+Then create a new, empty, **private** repository (on GitHub or elsewhere) and
+push to it:
+
+```bash
+git remote add origin https://github.com/<you>/kouludata.git
+git push -u origin main
+```
+
+**Download the source as a ZIP.** No git required. On this page, **Code →
+Download ZIP**, extract it, then create a new private repository and add the
+files to it — either by dragging them into GitHub's web uploader
+(`github.com/new` → *uploading an existing file*) or with
+[GitHub Desktop](https://desktop.github.com/).
+
+Whichever route you take, you now have `data.json` (an empty document), a
+`.gitignore` that keeps calendar exports and tokens out, and an example course
+folder you can delete.
 
 ### 2. Create a token
 
@@ -181,8 +204,8 @@ or with git on a computer.
 ## Rules worth keeping
 
 **Keep the repository private.** It ends up holding your timetable, your notes,
-your deadlines and your coursework. This is why step 1 says to use the template
-rather than fork: a fork of a public repo is public and cannot be made private.
+your deadlines and your coursework. This is why step 1 warns against GitHub's
+Fork button: a fork of a public repo is public and cannot be made private.
 
 **Do not commit `.ics` files.** A calendar export names real people, rooms and
 groups. `.gitignore` blocks them; import them into the dashboard instead.
@@ -197,6 +220,30 @@ everything, notes and deadlines included. `.gitignore` keeps those out of the
 repo on purpose; keep them somewhere else.
 
 ---
+
+## Reporting bugs
+
+The dashboard's source is a separate, private repository, so **this template
+repository is where bugs get reported** — both for the dashboard itself and for
+these setup instructions.
+
+**[Open an issue](https://github.com/JessexS/kouludata_template/issues/new/choose)**
+and use the bug report template. Include:
+
+- What happened, and what you expected instead
+- Steps to reproduce
+- Your browser and device (mobile bugs are often browser-specific)
+- Console errors — press F12 → Console (desktop), or long-press → Inspect
+  (mobile), and copy anything red
+
+**Do not include your `data.json`, a token, or a screenshot of your own
+courses, deadlines or notes.** Issues here are public. If a bug needs your real
+data to reproduce, describe the shape of it instead ("a course name with a
+slash in it", "an event with no end time") rather than pasting the data itself.
+
+Feature ideas and questions about the setup are also welcome as issues — the
+bug template is a guide, not a requirement.
+
 
 ## FAQ
 
