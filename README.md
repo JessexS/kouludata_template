@@ -116,10 +116,22 @@ Usability/
   essay.odt
 ```
 
-From the **Files** tab you can browse those folders and edit anything text.
-Saving is a real commit. Documents and spreadsheets are listed with a link to
-GitHub rather than an editor, because opening them as text would corrupt them,
-and files over 1 MB are listed the same way — that is a GitHub API limit.
+From the **Files** tab you can browse those folders and edit what is in them.
+Saving is a real commit.
+
+- **Text files** (`.md`, `.txt`, `.csv`, `.json`, …) open in a plain editor.
+- **Documents** — `.odt`, `.ods`, `.odp`, `.docx`, `.xlsx`, `.pptx` — open one
+  line per paragraph. Only paragraphs you change are rewritten; images, styles,
+  tables and every other paragraph are repackaged untouched. Formatting *inside*
+  a paragraph you edit collapses to its first run, so a bold word mid-sentence
+  comes back plain. A raw-XML view sits behind the text view for anything the
+  line editor cannot express. In spreadsheets only cell text is editable —
+  numbers and formulas are left alone.
+- **Everything else** — PDFs, images, and the pre-2007 binary formats (`.doc`,
+  `.xls`, `.ppt`, which are not ZIP archives) — is listed with a link to GitHub.
+  Text files over 1 MB too; that is a GitHub API limit.
+
+Every save is a commit, so a bad edit is one `git revert` from undone.
 
 The Files tab deliberately cannot create, rename or delete. Do those on GitHub,
 or with git on a computer.
