@@ -35,15 +35,29 @@ Nobody else can see any of it. The page you open is a shell; the data is yours.
 
 ## Setup (about five minutes, once)
 
-### 1. Make your own repository
+Step 1 gets you the repository. Steps 2–5 are what you do **after** that: they
+connect a dashboard to it, and they are the whole of the setup — there is
+nothing to install and nothing to deploy.
 
-Click **Use this template → Create a new repository** at the top of this page.
+### 1. Make your own copy
 
-Name it whatever you like — `kouludata` is a fine choice. **Set it to Private.**
-This repo will contain your timetable, your notes and your coursework.
+Two ways, and the difference matters.
 
-You now have `data.json` (an empty document), a `.gitignore` that keeps calendar
-exports and tokens out, and an example course folder you can delete.
+**Use this template — do this one.** Click **Use this template → Create a new
+repository** at the top of this page. Name it whatever you like (`kouludata` is
+a fine choice) and **set it to Private**. You get the same files with a clean
+history of your own, and it is the only route that produces a private repo.
+
+**Fork.** Forking works and is welcome — for reading the setup, suggesting a fix
+to these instructions, or keeping a copy you intend to share. But **a fork of a
+public repository is public, and GitHub will not let you make it private.** Your
+timetable, notes and coursework should not live in a public repo, so do not put
+real data in a fork. If you have already forked and want to switch: use the
+template to make a private repo, then delete the fork.
+
+Either way you now have `data.json` (an empty document), a `.gitignore` that
+keeps calendar exports and tokens out, and an example course folder you can
+delete.
 
 ### 2. Create a token
 
@@ -81,12 +95,38 @@ the repository private before putting anything real in it.
 
 ### 4. Fill it in
 
-- **Settings → Import .ics file** — export your timetable from Peppi,
-  Lukkarikone, Google Calendar or Outlook and load it here. Re-importing replaces
-  the previous import instead of duplicating it.
+- **Settings → Import .ics file** — export your timetable from Lukkarikone
+  (see below), Peppi, Google Calendar or Outlook and load it here. Re-importing
+  replaces the previous import instead of duplicating it.
 - **Courses → Add course** — name, Zoom link, Moodle link. The dashboard suggests
   courses from the calendar events it just imported.
 - **Files** — your course folders from this repository, ready to read and edit.
+
+#### Getting your timetable out of Lukkarikone (Metropolia)
+
+Lukkarikone hands you a **subscription link**, not a file, so there is one extra
+step: turn the link into a file, then import the file.
+
+1. Open <https://lukkarikone.metropolia.fi> and sign in.
+2. If you have not built a timetable yet, do that under **Lukujärjestysten
+   hallinta** (timetable management) — search for your group, your courses or a
+   room and add them, then save.
+3. Open **Sisältölistaus** (content listing) at the top of the page and choose
+   **Jaa kalenteri** (share calendar). The same command is in the dropdown next
+   to the timetable's name in Lukujärjestysten hallinta.
+4. Lukkarikone creates an **iCal link**. Copy it.
+5. Paste it into your browser's address bar and open it. If it begins with
+   `webcal://`, change that to `https://` first — same URL, but `webcal` tells
+   the browser to hand it to a calendar app instead of downloading it. The file
+   saves as `.ics`.
+6. Back in the dashboard: **Settings → Import .ics file**, pick that file.
+
+**Poista kalenterin jako** (remove calendar sharing) revokes the link later, if
+you would rather it stopped existing.
+
+The link keeps updating for anyone subscribed to it in a calendar app; the file
+you downloaded is a snapshot. When the timetable changes — and it will —
+download it again and re-import.
 
 Edits save locally at once and reach GitHub a few seconds later. The pill in the
 top right tells you where things stand.
@@ -141,7 +181,8 @@ or with git on a computer.
 ## Rules worth keeping
 
 **Keep the repository private.** It ends up holding your timetable, your notes,
-your deadlines and your coursework.
+your deadlines and your coursework. This is why step 1 says to use the template
+rather than fork: a fork of a public repo is public and cannot be made private.
 
 **Do not commit `.ics` files.** A calendar export names real people, rooms and
 groups. `.gitignore` blocks them; import them into the dashboard instead.
