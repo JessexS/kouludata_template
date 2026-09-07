@@ -1,0 +1,26 @@
+# Calendar exports name real people, rooms and groups. Import them into the
+# dashboard; do not commit them.
+*.ics
+
+# Anything token-shaped
+.env
+.env.*
+!.env.example
+
+# Dashboard backups, which contain your notes and deadlines
+koulu-backup-*.json
+
+# Dependencies / build output
+node_modules/
+dist/
+build/
+
+# LibreOffice lock files
+.~lock.*#
+
+# OS / editor cruft
+.DS_Store
+Thumbs.db
+*.swp
+.idea/
+.vscode/
